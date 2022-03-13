@@ -20,7 +20,14 @@ class Products extends Component
         return view('livewire.edit');
     }
 
+    // delete product
+    public function delete($id)
+    {
+        $this->product = Product::findOrFail($id);
+        $this->product->delete();
 
+        session()->flash('deleted', 'Se eliminó el producto');
+    }
 
     public function render()
     {
