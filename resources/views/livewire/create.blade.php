@@ -36,21 +36,32 @@
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                             Nombre
                         </label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Nombre del producto">
+                        <input wire:model="title" name="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Nombre del producto">
+
+                        {{-- mensaje de error --}}
+                        @error('title')
+                            <span class="text-red-500">*{{ $message }}</span>
+                        @enderror
+
                         </div>
                         <div class="mb-6">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                             Cantidad
                         </label>
-                        <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" placeholder="Cantidad en stock...">
+                        <input wire:model="amount" name="amount" class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" placeholder="Cantidad en stock...">
+
+                        {{-- mensaje de error --}}
+                        @error('amount')
+                            <span class="text-red-500">*{{ $message }}</span>
+                        @enderror
 
                         </div>
 
-                        <button type="button" class="w-full inline-flex justify-center rounded-md border-black hover:border-green-500 text-dark shadow-sm px-4 py-2 text-base font-medium hover:text-white hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        <button wire:click="save" type="button" class="w-full inline-flex justify-center rounded-md border-black hover:border-green-500 text-dark shadow-sm px-4 py-2 text-base font-medium hover:text-white hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
                             Guardar
                         </button>
 
-                        <button wire:click="$toggle('modal')" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        <button wire:click="$set('modal', false)" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                             Cancelar
                         </button>
                     </form>

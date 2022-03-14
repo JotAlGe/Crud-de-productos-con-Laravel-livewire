@@ -53,6 +53,18 @@ class Products extends Component
         $this->showEdit = false;
     }
 
+
+    // registrar producto
+    public function save()
+    {
+        $validated = $this->validate();
+        Product::create($validated);
+        $this->modal = false;
+
+        // flash message
+        session()->flash('created', 'Se agregó un producto');
+    }
+
     // delete product
     public function delete($id)
     {
