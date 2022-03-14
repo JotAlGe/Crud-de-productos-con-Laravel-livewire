@@ -14,6 +14,24 @@ class Products extends Component
     public $product;
     public $title, $amount;
 
+    // reglas de validación
+    protected $rules = [
+        'title' => ['required', 'min:5'],
+        'amount' => ['required', 'numeric']
+    ];
+
+    // mensajes de error
+    protected $messages = [
+        'title.required' => 'Debe colocar un nombre para el producto',
+        'title.min' => 'El título debe tener al menos 5 caracteres!',
+        'amount.required' => 'Debe colocar una cantidad',
+        'amount.numeric' => 'La cantidad debe ser numérica'
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
     public function edit($id)
     {
@@ -25,6 +43,8 @@ class Products extends Component
     // update
     public function update($product_id)
     {
+        $this->validate();
+
         $product = Product::find($product_id);
         $product->update([
             'title' => $this->title,

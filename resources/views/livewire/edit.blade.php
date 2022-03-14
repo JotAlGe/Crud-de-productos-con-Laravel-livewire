@@ -20,7 +20,7 @@
             </div>
             <div class="w-full mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
               <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                Edit a {{ $product->title }}
+                Editar a <strong>{{ $product->title }}</strong>
               </h3>
               <div class="mt-2">
 
@@ -40,16 +40,26 @@
                         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Nombre del producto"
                         value="{{ $product->title }}"
                         wire:model="title">
+
+                        {{-- mensaje de error --}}
+                        @error('title')
+                            <span class="text-red-500">*{{ $message }}</span>
+                        @enderror
                         </div>
                         <div class="mb-6">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                             Cantidad
                         </label>
                         <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" placeholder="Cantidad en stock..."
-                        value="{{ $product->amount }}"
+                        value="{{$product->amount}}"
                         wire:model="amount">
 
+                        {{-- mensaje de error --}}
+                        @error('amount')
+                            <span class="text-red-500">*{{ $message }}</span>
+                        @enderror
                         </div>
+
 
                         <button wire:click="update({{$product->id}})" type="button" class="w-full inline-flex justify-center rounded-md border-black hover:border-green-500 text-dark shadow-sm px-4 py-2 text-base font-medium hover:text-white hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
                             Guardar
